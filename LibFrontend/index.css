@@ -1,0 +1,321 @@
+
+.light-mode body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body.light-mode {
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.container button {
+  margin-right: 10px; /* Adjust this value to set the desired space between buttons */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.light-mode h1 {
+  text-align: center;
+  margin-bottom: 44px;
+  color: black; /* Set color for light mode */
+}
+
+
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.table-container {
+  max-width: 400px; 
+  margin: 0 auto; /* Centers the container horizontally */
+}
+
+table th,
+table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#bookTable tbody tr:hover {
+  background-color: lightgreen; /* Change this color to your desired hover color */
+  cursor: pointer; /* Change cursor style on hover */
+}
+
+table th {
+  background-color: yellowgreen;
+  font-weight: bold;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  cursor: pointer;
+  margin: 0;
+}
+
+button {
+  border: solid 1px green;
+  background: #fff;
+  box-shadow: 4px 3px green;
+}
+
+button:hover {
+  box-shadow: 0 0 pink;
+  transform: translate(6px, 6px);
+}
+
+button:active {
+  background: #f1f1f1;
+}
+
+button:hover {
+  background-color: mediumseagreen;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  /* Adjustments for smaller screens */
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+
+/*/End of light Mode//////////////////////////////////////////////////////////////////////////////////////*/
+/* Dark mode styles */
+
+/* Add more dark mode styles for other elements similarly */
+
+
+/*Slider styles */
+
+.content .light-mode{
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  width: 400px;
+  background-color: #f4f4f4;
+}
+.content .dark-mode{
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  width: 400px;
+  background-color: black;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #6E6E6E;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #1849AB;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 0 4px rgba(21, 156, 228, 0.7);
+  outline: none;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*slider controls    //////   DARK_MODE STARTS*/
+
+.dark-mode body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0; /* Darker background color */
+  color: #fff; /* Light text color for dark mode */
+}
+body.dark-mode {
+  background-color: black; /* Darker background color */
+}
+
+.dark-mode .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  /* Darker container background */
+ 
+}
+.dark-mode .content,
+.dark-mode .container {
+  display: block;
+  color: #fff; /* Adjust the color for visibility in dark mode */
+}
+
+/* Ensure buttons remain visible in dark mode */
+.dark-mode button {
+  background: #333; /* Change the background for better visibility */
+  color: #fff; /* Adjust text color for better contrast */
+}
+
+.dark-mode .container button {
+  margin-right: 10px; /* Adjust this value to set the desired space between buttons */
+}
+
+.dark-mode h1 {
+ font-size: 100px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: greenyellow; /* Set color for dark mode */
+}
+/* Table styles */
+.dark-mode table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  align-items: center;
+  background-color: #333;
+  /* Other dark mode table styles */
+}
+
+.dark-mode .table-container {
+  max-width: 400px; 
+  margin: 0 auto; /* Centers the container horizontally */
+}
+
+.dark-mode table th,
+.dark-mode table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #666; /* Darker border for table cells */
+  color: #fff; /* Light text color for dark mode */
+}
+
+.dark-mode #bookTable tbody tr:hover {
+  background-color: #555; /* Darker hover color for table rows */
+  cursor: pointer;
+}
+
+.dark-mode table th {
+  background-color: darkslategray; /* Darker heading background */
+  font-weight: bold;
+  color: #fff; /* Light text color for dark mode */
+}
+
+/* Buttons */
+.dark-mode button {
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  cursor: pointer;
+  margin: 0;
+  border: solid 1px green;
+  background: #222; /* Darker button background */
+  box-shadow: 4px 3px #222; /* Darker box-shadow for buttons */
+  color: #fff; /* Light text color for dark mode */
+}
+
+.dark-mode button:hover {
+  box-shadow: 0 0 pink;
+  transform: translate(6px, 6px);
+}
+
+.dark-mode button:active {
+  background: #333; /* Darker active background color for buttons */
+}
+
+.dark-mode button:hover {
+  background-color: mediumseagreen; /* Hover color for buttons */
+}
+
+/* Responsive styles */
+@media (min-width: 100px) {
+  /* Adjustments for smaller screens */
+  .dark-mode .container {
+    padding: 10px;
+   max-width: 1300px;
+   }
+
+  .dark-mode h1 {
+    font-size: 44px;
+    margin-bottom: 20px;
+  }
+
+  .dark-mode table th,
+  .dark-mode table td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .dark-mode button {
+    padding: 8px 16px;
+    font-size: 24px;
+  }
+}
+

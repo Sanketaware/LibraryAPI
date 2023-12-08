@@ -1,0 +1,69 @@
+#API Concept: 
+
+      - The API will provide operations like adding, retrieving, updating, and deleting book information. 
+
+Endpoints:
+
+GET /books
+GET /books/{id}  
+POST /books 
+PUT /books/{id}
+DELETE /books/{id}
+
+1> GET /books :  Retrieve a list of all books in the library. 
+   Request Format:
+
+      URL - {{Base url}}/books 
+
+   Response Format: 
+
+       -Returns a JSON array containing information about all books. 
+
+2> GET /books/{id} :  Retrieve a specific book by its unique ID.
+
+   Request Format: 
+
+     URL  - {{Base url}}/books/{id}      
+
+   Response Format: 
+
+       -Returns a JSON object with information about the specific book. 
+
+3> POST /books : Add a new book to the library. 
+
+   Request Format: 
+
+     URL  -{{Base url}}/books 
+
+          -Request Body: JSON object containing book details (e.g., title, author, ISBN). 
+
+   Response Format: 
+
+       -Returns a JSON object confirming the addition of the new book. 
+
+ 
+
+4> PUT /books/{id} : Update the details of a specific book. 
+
+   Request Format: 
+
+   URL -{{Base url}}/books/{id} 
+
+       -Request Body: JSON object containing updated book details. 
+
+   Response Format: 
+
+    -Returns a JSON object confirming the update of the specific book. 
+
+5> DELETE /books/{id} : Delete a specific book by ID. 
+
+   Request Format: 
+
+    -{{Base url}}/books/{id}  
+
+   Response Format: 
+
+    -Returns a JSON object confirming the deletion of the specific book. 
+
+
+ 
