@@ -9,7 +9,6 @@ const getAllBooks = (req, res) => {  // GET /library - Get all books
   if (existingBooks.length === 0) {
     return res.status(404).json({ error: 'Book shelf is empty.' });
   }
-
   res.status(200).json(existingBooks);
 };
 
@@ -34,12 +33,13 @@ const getBookById = (req, res) => {
   res.status(200).json(foundBook);
 };
 
+
+//Create Book
 const createBook = (req, res) => {   // POST /library - Create a new book
   const { title, author, genre, yearPublished } = req.body;
   if (!title || !author || !genre || !yearPublished) {
       return res.status(400).json({ error: 'Please provide all book details.' });
   }
-  
   // Convert title, author, and genre to lowercase and remove white spaces
   const formattedTitle = title.toLowerCase().trim();
   const formattedAuthor = author.toLowerCase().trim();
@@ -84,50 +84,6 @@ const createBook = (req, res) => {   // POST /library - Create a new book
   res.status(201).json({ message: 'Book created successfully', newBook });
 };
 
-
-// const createBook = (req, res) => {   // POST /library - Create a new book
-//   const { title, author, genre, yearPublished } = req.body;
-//   if (!title || !author || !genre || !yearPublished) {
-//       return res.status(400).json({ error: 'Please provide all book details.' });
-//   }
-//   let existingBooks = JSON.parse(localStorage.getItem('Books')) || [];
-//   let discardedBooks = JSON.parse(localStorage.getItem('DiscardedBooks')) || [];
-//   // Check if the book with the same details exists in 'Books' or 'DiscardedBooks'
-//   const bookExists = existingBooks.some(book =>
-//     book.title === title &&
-//     book.author === author &&
-//     book.genre === genre &&
-//     book.yearPublished === yearPublished
-//   );
-//   const discardedBookIndex = discardedBooks.findIndex(book =>
-//     book.title === title &&
-//     book.author === author &&
-//     book.genre === genre &&
-//     book.yearPublished === yearPublished
-//   );
-//   if (bookExists) {
-//       return res.status(400).json({ error: 'Book already exists in the main shelf.' });
-//   }
-//   if (discardedBookIndex !== -1) {
-//     const discardedBook = discardedBooks[discardedBookIndex];
-//     existingBooks.push(discardedBook); // Add book from discarded to main shelf
-//     discardedBooks.splice(discardedBookIndex, 1); // Remove book from discarded shelf
-//     localStorage.setItem('Books', JSON.stringify(existingBooks));
-//     localStorage.setItem('DiscardedBooks', JSON.stringify(discardedBooks));
-//     return res.status(201).json({ message: 'Book created successfully from discarded shelf', newBook: discardedBook });
-//   }
-//   let id = generateID(genre, yearPublished);
-//   const newBook = {
-//       id,
-//       title,
-//       author,
-//       genre,
-//       yearPublished
-//   };
-//   existingBooks.push(newBook);
-//   localStorage.setItem('Books', JSON.stringify(existingBooks));
-//   res.status(201).json({ message: 'Book created successfully', newBook });
-// };
 
 
 // PUT /library/:id - Update a specific book by ID
@@ -184,6 +140,8 @@ const updateBookById = (req, res) => {
   res.status(200).json({ message: 'Book updated successfully', updatedBook: existingBooks[bookIndex] });
 };
 
+
+
 const deleteBookById = (req, res) => {
   const bookIdToDelete = req.params.id;
 
@@ -215,6 +173,8 @@ const generateID = (genre, yearPublished) => {
   localStorage.setItem('TotalBooksCounter', totalbooks.toString());
   return id;
 };
+
+
 module.exports = {
   getAllBooks,
   getBookById,

@@ -37,6 +37,7 @@ function getAllBooks() {
       headingName.textContent = "Available Books";
     })
     .catch((error) => {
+      
       console.error('Error fetching book data:', error);
     });
 }
@@ -52,10 +53,11 @@ function getAllDiscardedBooks() {
   })
     .then((response) => {
       if (response.ok) {
-        return response.json(); // Parse the JSON response
+        return response.json(); 
       }
     })
     .then((data) => {
+     
       const BooksTable = document.getElementById("bookList");
       const headingName = document.getElementById("headingname");
       let innerString = "";
@@ -72,9 +74,11 @@ function getAllDiscardedBooks() {
       });
       BooksTable.innerHTML = innerString;
       headingName.textContent = "Discarded Books";
+     
     })
     .catch((error) => {
-      console.error('Error fetching book data:', error);
+      
+      console.error('Error fetching book data:', error.data);
     });
 }
 
@@ -108,66 +112,67 @@ function deleteBook(bookId) {
 
 // JavaScript to ADD a book along with the SweetAlert
 
-document.addEventListener('DOMContentLoaded', function() {
-  const AddBookBTN = document.getElementById('AddBookBTN');
+AddBookBTN.addEventListener('click', function() {
+  Swal.fire({
+    title: 'Add Book',
+    html: `
+      <form class="bookForm" id="bookForm">
+        <input type="text" placeholder="Title" id="title" class="swal2-input" required>
+        <input type="text" placeholder="Author" id="author" class="swal2-input" required>
+        <input type="text" placeholder="Genre" id="genre" class="swal2-input" required>
+        <input type="number" placeholder="Year" id="yearPublished" class="swal2-input" required>
+      </form>
+    `,
+    showCancelButton: true,
+    confirmButtonText: 'Add',
+    focusConfirm: false,
+    preConfirm: () => {
+      const title = document.getElementById('title').value;
+      const author = document.getElementById('author').value;
+      const genre = document.getElementById('genre').value;
+      const yearPublished = document.getElementById('yearPublished').value;
 
-  AddBookBTN.addEventListener('click', function() {
-    Swal.fire({
-      title: 'Add Book',
-      html: `
-        <form class="bookForm" id="bookForm">
-         <input type="text" placeholder="Title" id="title" class="swal2-input">
-          <input type="text" placeholder="Author" id="author" class="swal2-input">
-          <input type="text" placeholder="Genre" id="genre"  class="swal2-input">
-          <input type="text" placeholder="Year" id="yearPublished" class="swal2-input">
-        </form>
-      `,
-      showCancelButton: true,
-      confirmButtonText: 'Add',
-      focusConfirm: false,
-      preConfirm: () => {
-        const title = document.getElementById('title').value;
-        const author = document.getElementById('author').value;
-        const genre = document.getElementById('genre').value;
-        const yearPublished = document.getElementById('yearPublished').value;
-
-        // You can perform validations or additional checks on the input fields here
-        
-        // Send data via Fetch API
-        return fetch('http://localhost:4000/library/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            title,
-            author,
-            genre,
-            yearPublished
-          })
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok.');
-          }
-          return response.json();
-        })
-        .then(data => {
-          // Handle successful response from the API
-          // You might want to show a success message or update your UI accordingly
-          console.log('Book added:', data);
-          Swal.fire('Book Added', 'Book has been successfully added.', 'success');
-          getAllBooks();
-        })
-        .catch(error => {
-          // Handle errors from the API or fetch request
-          console.error('Error adding book:', error);
-          Swal.fire('Error', 'There was an error adding the book.', 'error');
-        });
+      // Validate all fields are filled
+      if (!title || !author || !genre || !yearPublished) {
+        Swal.showValidationMessage('Please fill in all fields');
+        return false;
       }
-    });
+
+      // Use Fetch API to send data to server
+      return fetch('http://localhost:4000/library/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title,
+          author,
+          genre,
+          yearPublished
+        })
+      })
+      .then(response => {
+        // if (!response.ok) {
+        //   throw new Error('Network response was not ok.');
+        // }
+        return response.json();
+      })
+      .then(data => {
+        // Handle successful response from the API
+        if(data.message != null)
+        {
+          console.log('Book added:', data);
+          Swal.fire('Book Added',data.message, 'success');
+          getAllBooks(); 
+        }else{
+          console.error('Error adding book:', data.error);
+          Swal.fire('Error',data.error, 'error');
+        }
+      })
+    }
   });
 });
+
 
 /////////////////////////////
 
